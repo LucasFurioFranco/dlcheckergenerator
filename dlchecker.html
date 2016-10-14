@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <script src="interactions.js"></script>
+</head>
+
+<body>
+  <h1>DL Checker Generator</h1>
+
+  <br>
+  <div id="divBtnImportJson">
+    <input type="button" value="show model" id="btnVisualizeModel" onclick="document.getElementById('divBtnImportJson').hidden=true;document.getElementById('divImportJson').hidden=false">
+  </div>
+
+  <br>
+
+  <div id="divImportJson" hidden="true">
+    <textarea rows="4" cols="50" value="import" id="txtAreaImportJson"></textarea>
+    <br>
+    <input type="button" value="apply changes" id="btnImportJsonOkSave" onclick="window.interaction.importModel('txtAreaImportJson');window.interaction.refreshScopeOptions('slcScopeSelect');">
+    <input type="button" value="hide model" id="btnImportJsonOkCancel" onclick="document.getElementById('divImportJson').hidden=true;document.getElementById('divBtnImportJson').hidden=false">
+  </div>
+
+  <br>
+
+  <div>
+    <h2>Scope</h2>
+    <select id="slcScopeSelect" onchange="console.log('scope selected: ' + JSON.stringify(window.interaction.selectScope(this.value)))">
+      <option value="aways">aways</option>
+      <option value="recurring">recurring</option>
+    </select>
+  </div>
+
+  <br>
+
+  <h3>Add property</h3>
+  <div>
+    <label>Enter the new property name</label><br>
+    <br>
+    <input type="text" placeholder="Property name" id="txtName">
+    <br><br><br>
+    <div id="newPropertyType">
+      <label>Select the new property type</label><br>
+      <input type="radio" name="newPropertyType" class="newPropertyType" onclick="window.interaction.newPropertyType('String' , 'newPropertyTypeOptions')">String<br>
+      <input type="radio" name="newPropertyType" class="newPropertyType" onclick="window.interaction.newPropertyType('Number' , 'newPropertyTypeOptions')">Number<br>
+      <input type="radio" name="newPropertyType" class="newPropertyType" onclick="window.interaction.newPropertyType('Boolean', 'newPropertyTypeOptions')">Boolean<br>
+      <input type="radio" name="newPropertyType" class="newPropertyType" onclick="window.interaction.newPropertyType('Vector' , 'newPropertyTypeOptions')">Vector<br>
+      <input type="radio" name="newPropertyType" class="newPropertyType" onclick="window.interaction.newPropertyType('Object' , 'newPropertyTypeOptions')">Object<br>
+    </div>
+    <br><br>
+    <div id="newPropertyTypeOptions"></div>
+    <br><br><br>
+    <input type="button" value="Create property" id="btnSave" onclick="">
+  </div>
+
+  <br>
+  <br>
+
+  <script>
+    window.interaction.refreshScopeOptions('slcScopeSelect');
+  </script>
+
+</body>
+
+</html>
